@@ -1,0 +1,38 @@
+<p>simulator works!</p>
+<form [formGroup]="myFormulario" (ngSubmit)="calcular()">
+  <div class="form-group row mb-3">
+    <label class="col-2 col-form-label">valor vivienda</label>
+    <div class="col-8">
+      <input class="form-control" type="text" formControlName="propertyValue">
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label class="col-2 col-form-label">cuanto necesitas</label>
+    <div class="col-8">
+      <input class="form-control" type="text" formControlName="loanPercentage" [class.is-invalid]="notValidPercentage">
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label class="col-2 col-form-label">a cuantos años</label>
+    <div class="col-8">
+      <input class="form-control" type="text" formControlName="loanYearsDuration">
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <input class="btn btn-outline-success" type="submit" value="Calcular">
+  </div>
+</form>
+<div *ngIf="isCalculated" class="form-group row">
+  <div class="col-4">
+    <app-card-result [data]="dataUno"></app-card-result>
+  </div>
+  <div class="col-4">
+    <app-card-result [data]="dataDos"></app-card-result>
+
+  </div>
+  <div class="col-4">
+    <app-card-result [data]="dataTres"></app-card-result>
+
+  </div>
+
+</div>

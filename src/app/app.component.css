@@ -1,0 +1,9 @@
+.body {
+margin-left: 15%;
+margin-right: 15%;
+  position: relative;
+  padding-bottom: 60px;
+  min-height: 100vh;  /*esto significa que mida mínimo lo que mida el viewport.*/
+  /* background-color: cornflowerblue;
+  color: white; */
+}
