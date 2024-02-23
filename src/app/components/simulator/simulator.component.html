@@ -18,6 +18,22 @@
       <input class="form-control" type="text" formControlName="loanYearsDuration">
     </div>
   </div>
+
+  <div class="form-group row mb-3">
+    <label class="col-2 col-form-label">Valor Vehiculo</label>
+    <div class="col-8">
+      <input class="form-control" type="text" formControlName="valueVehicle">
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label class="col-2 col-form-label">cuento necesitas</label>
+    <div class="col-8">
+      <input class="form-control" type="text" formControlName="vehicleLoad"
+      [class.is-invalid]="notLoanVehicleAllowed">
+    </div>
+  </div>
+
+
   <div class="form-group row mb-3">
     <input class="btn btn-outline-success" type="submit" value="Calcular">
   </div>

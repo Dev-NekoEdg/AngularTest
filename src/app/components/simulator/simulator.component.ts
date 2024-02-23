@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ResultSimulator } from 'src/app/interfaces/result-simulator';
 
 @Component({
@@ -33,15 +33,24 @@ export class SimulatorComponent implements OnInit {
       this.myFormulario.get('loanPercentage')?.touched;
   }
 
+  get notLoanVehicleAllowed() {
+    const totalLoan = this.myFormulario.get('valueVehicle')?.value;
+    const wantedLoan = this.myFormulario.get('vehicleLoad')?.value;
+    console.log({totalLoan, wantedLoan });
+    return +wantedLoan > +totalLoan;
+  }
+
   createForm() {
     this.myFormulario = this.builder.group({
       propertyValue: ['250000000'],
       loanPercentage: ['70', Validators.pattern("[0-9]+")],
       loanYearsDuration: ['20'],
+      valueVehicle: [''],
+      vehicleLoad: [''],
     });
   }
 
-  createEmptyResult(){
+  createEmptyResult() {
     return {
       title: "",
       quoteValue: 0,
@@ -59,49 +68,48 @@ export class SimulatorComponent implements OnInit {
     this.isCalculated = true;
   }
 
-
-  private calculoUno(){
+  private calculoUno() {
     const totalValor = this.myFormulario.get('propertyValue')?.value;
     const porcentage = this.myFormulario.get('loanPercentage')?.value;
-    const resta = 100 -porcentage;
+    const resta = 100 - porcentage;
     const duration = this.myFormulario.get('loanYearsDuration')?.value;
-    const loan = (totalValor * porcentage)/100;
+    const loan = (totalValor * porcentage) / 100;
 
-    let result: ResultSimulator={
+    let result: ResultSimulator = {
       title: "Simulacion 1",
-      quoteValue: ((loan/duration)/12) * 0.3,
+      quoteValue: ((loan / duration) / 12) * 0.3,
       loanTotal: loan,
-      initial: (totalValor * resta)/100
+      initial: (totalValor * resta) / 100
     };
     this.dataUno = result;
   }
-  private calculoDos(){
+  private calculoDos() {
     const totalValor = this.myFormulario.get('propertyValue')?.value;
     const porcentage = this.myFormulario.get('loanPercentage')?.value;
-    const resta = 100 -porcentage;
+    const resta = 100 - porcentage;
     const duration = this.myFormulario.get('loanYearsDuration')?.value;
-    const loan = (totalValor * porcentage)/100;
+    const loan = (totalValor * porcentage) / 100;
 
-    let result: ResultSimulator={
+    let result: ResultSimulator = {
       title: "Simulacion xxx",
-      quoteValue: ((loan/duration)/12) * 1.3,
+      quoteValue: ((loan / duration) / 12) * 1.3,
       loanTotal: loan,
-      initial: (totalValor * resta)/100
+      initial: (totalValor * resta) / 100
     };
     this.dataDos = result;
   }
-  private calculoTres(){
+  private calculoTres() {
     const totalValor = this.myFormulario.get('propertyValue')?.value;
     const porcentage = this.myFormulario.get('loanPercentage')?.value;
-    const resta = 100 -porcentage;
+    const resta = 100 - porcentage;
     const duration = this.myFormulario.get('loanYearsDuration')?.value;
-    const loan = (totalValor * porcentage)/100;
+    const loan = (totalValor * porcentage) / 100;
 
-    let result: ResultSimulator={
+    let result: ResultSimulator = {
       title: "Simulacion Pa' pobres",
-      quoteValue: ((loan/duration)/12) * 0.8,
+      quoteValue: ((loan / duration) / 12) * 0.8,
       loanTotal: loan,
-      initial: (totalValor * resta)/100
+      initial: (totalValor * resta) / 100
     };
     this.dataTres = result;
   }
